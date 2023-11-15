@@ -432,8 +432,8 @@ function Media({
               loop
               muted
               onError={(e) => {
-                const { src } = e.target;
-                if (src === previewUrl) {
+                const { poster } = e.target;
+                if (poster === previewUrl) {
                   e.target.poster = "";
                 }
               }}
