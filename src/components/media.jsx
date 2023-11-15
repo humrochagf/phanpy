@@ -399,12 +399,6 @@ function Media({
               } catch (e) {}
             }
           }}
-          onError={(e) => {
-            const { src } = e.target;
-            if (src === previewUrl) {
-              e.target.src = url;
-            }
-          }}
         >
           {showOriginal || autoGIFAnimate ? (
             isGIF && showOriginal ? (
@@ -424,7 +418,7 @@ function Media({
                 }}
               />
             )
-          ) : isGIF ? (
+          ) : (
             <video
               ref={videoRef}
               src={url}
@@ -437,33 +431,7 @@ function Media({
               playsinline
               loop
               muted
-              onError={(e) => {
-                const { src } = e.target;
-                if (src === previewUrl) {
-                  e.target.src = url;
-                }
-              }}
             />
-          ) : (
-            <>
-              <img
-                src={previewUrl}
-                alt={showInlineDesc ? '' : description}
-                width={width}
-                height={height}
-                data-orientation={orientation}
-                loading="lazy"
-                onError={(e) => {
-                  const { src } = e.target;
-                  if (src === previewUrl) {
-                    e.target.src = url;
-                  }
-                }}
-              />
-              <div class="media-play">
-                <Icon icon="play" size="xl" />
-              </div>
-            </>
           )}
           {!showOriginal && !showInlineDesc && (
             <AltBadge alt={description} lang={lang} index={altIndex} />
