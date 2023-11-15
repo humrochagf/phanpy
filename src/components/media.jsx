@@ -431,6 +431,12 @@ function Media({
               playsinline
               loop
               muted
+              onError={(e) => {
+                const { src } = e.target;
+                if (src === previewUrl) {
+                  e.target.poster = "";
+                }
+              }}
             />
           )}
           {!showOriginal && !showInlineDesc && (
